@@ -498,7 +498,7 @@
 			// Undefined array (entity level)
 
 			mw.toInspect = undefined;
-			table = widgetBuilder.buildWidget( "entity", {
+			var table = widgetBuilder.buildWidget( "entity", {
 				type: "array"
 			}, mw );
 
@@ -628,7 +628,7 @@
 			// Undefined array
 
 			mw.toInspect = undefined;
-			table = widgetBuilder.buildWidget( "entity", {
+			var table = widgetBuilder.buildWidget( "entity", {
 				type: "array"
 			}, mw );
 
@@ -760,7 +760,7 @@
 
 			// Without enumTitles
 
-			select = widgetBuilder.buildWidget( "property", {
+			var select = widgetBuilder.buildWidget( "property", {
 				enum: [ "foo", "bar", "baz" ],
 				enumCategories: [ {
 					name: "category1",
@@ -855,7 +855,7 @@
 			// Empty array
 
 			mw.toInspect = [];
-			table = widgetBuilder.buildWidget( 'entity', {
+			var table = widgetBuilder.buildWidget( 'entity', {
 				type: 'array'
 			}, mw );
 
@@ -1198,7 +1198,7 @@
 						} ]
 					} ];
 
-					table = widgetBuilder.buildWidget( "entity", {
+					var table = widgetBuilder.buildWidget( "entity", {
 						type: "array"
 					}, mw );
 
@@ -1295,7 +1295,7 @@
 				description: "Bar Description"
 			} ];
 
-			table = widgetBuilder.buildWidget( "entity", {
+			var table = widgetBuilder.buildWidget( "entity", {
 				type: "array"
 			}, mw );
 

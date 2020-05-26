@@ -250,25 +250,21 @@
 	<repositories>
 		<!-- Try Central Repository first. It will resolve most things quickly -->
 		<repository>
-			<id>maven-central</id>
-			<url>http://repo1.maven.org/maven2</url>
+			<id>central</id>
+			<url>https://repo.maven.apache.org/maven2</url>
 		</repository>
 		<!-- Try specialized repositories next. It is slow to check (and fail) on each of these -->
 		<repository>
 			<id>jboss-public-repository</id>
-			<url>http://repository.jboss.org/nexus/content/groups/public</url>
-		</repository>
-		<repository>
-			<id>java.net-maven2-repository</id>
-			<url>http://download.java.net/maven/2</url>
+			<url>https://repository.jboss.org/nexus/content/groups/public</url>
 		</repository>
 		<repository>
 			<id>local-repository</id>
-			<url>https://raw.githubusercontent.com/metawidget/metawidget/master/repository</url>
+			<url>https://github.com/metawidget/metawidget/raw/master/repository/</url>
 		</repository>
 		<repository>
 			<id>prime-repo</id>
-			<url>http://repository.primefaces.org</url>
+			<url>https://repository.primefaces.org</url>
 		</repository>
 	</repositories>
 
@@ -795,24 +791,16 @@
 	</dependencyManagement>
 
 	<pluginRepositories>
-		<!-- Try Central Repository first. It will resolve most things -->
+		<!-- Try Central Repository first. It will resolve most things quickly -->
 		<pluginRepository>
-			<id>maven-central</id>
-			<url>http://repo1.maven.org/maven2</url>
+			<id>central</id>
+			<url>https://repo.maven.apache.org/maven2</url>
 		</pluginRepository>
 		<!-- Try specialized repositories next. It is slow to check (and fail) on each of these -->
-		<pluginRepository>
-			<id>codehaus</id>
-			<url>http://snapshots.repository.codehaus.org</url>
-		</pluginRepository>
-		<pluginRepository>
-			<id>webtest</id>
-			<url>http://webtest.canoo.com/webtest/m2-repo-snapshots</url>
-		</pluginRepository>
 		<!-- Substitute because http://jsdoctk-plugin.googlecode.com/svn/repo went offline -->
 		<pluginRepository>
 			<id>jsdoctk</id>
-			<url>https://raw.githubusercontent.com/metawidget/metawidget/master/repository</url>
+			<url>https://github.com/metawidget/metawidget/raw/master/repository</url>
 		</pluginRepository>
 	</pluginRepositories>
 

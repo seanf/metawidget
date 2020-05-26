@@ -674,12 +674,19 @@ metawidget.setInspector( new MetawidgetAnnotationInspector( config ) );</program
 				</para>
 				
 				<para>
-					In principal, ordering of property names within JavaScript objects
-					is not guaranteed. In practice, most browsers respect the original
-					order that properties were defined in. However you may want to
-					combine <classname>PropertyTypeInspector</classname> with a custom
-					<classname>Inspector</classname> that imposes
-					a defined ordering using <parameter>propertyOrder</parameter> attributes.
+					Before ES2015/ES6, ordering of property names within JavaScript objects was not guaranteed,
+					although most browsers respected the original order that properties were defined in. ES2015
+					does specify the order for <function>Object.getOwnPropertyNames</function>, and
+					<classname>PropertyTypeInspector</classname> will use
+					<function>Object.getOwnPropertyNames</function>, if available, to ensure predictable ordering
+					on modern browsers.
+				</para>
+
+				<para>
+					If you need a different order, or you need to support older browsers, including Internet
+					Explorer, you may want to combine <classname>PropertyTypeInspector</classname> with a custom
+					<classname>Inspector</classname> that imposes a defined ordering using
+					<parameter>propertyOrder</parameter> attributes.
 				</para>
 			</section>
 			

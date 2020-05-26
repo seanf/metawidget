@@ -91,11 +91,17 @@ var metawidget = metawidget || {};
 	/**
 	 * @class Inspects JavaScript objects for their property names and types.
 	 *        <p>
-	 *        In principal, ordering of property names within JavaScript objects
-	 *        is not guaranteed. In practice, most browsers respect the original
-	 *        order that properties were defined in. However you may want to
-	 *        combine PropertyTypeInspector with a custom Inspector that imposes
-	 *        a defined ordering using 'propertyOrder' attributes.
+	 *        Before ES2015/ES6, ordering of property names within JavaScript
+	 *        objects was not guaranteed, although most browsers respected the
+	 *        original order that properties were defined in. ES2015 does
+	 *        specify the order for Object.getOwnPropertyNames, and
+	 *        PropertyTypeInspector will use Object.getOwnPropertyNames, if
+	 *        available, to ensure predictable ordering on modern browsers.
+	 *        <p>
+	 *        If you need a different order, or you need to support older
+	 *        browsers, including Internet Explorer, you may want to combine
+	 *        PropertyTypeInspector with a custom Inspector that imposes a
+	 *        defined ordering using 'propertyOrder' attributes.
 	 */
 
 	metawidget.inspector.PropertyTypeInspector = function() {
@@ -173,15 +179,34 @@ var metawidget = metawidget || {};
 
 				inspectionResult.properties = {};
 
-				for ( var property in toInspect ) {
-
-					if ( !toInspect.hasOwnProperty( property ) ) {
-						continue;
-					}
-
+				function recordTypeOf (property) {
 					inspectionResult.properties[property] = {
 						type: _getTypeOf( toInspect[property] )
 					};
+				}
+
+				if ( Object.getOwnPropertyNames ) {
+					// With modern browsers (ES2015), getOwnPropertyNames
+					// *does* have a predictable order:
+					// https://www.stefanjudis.com/today-i-learned/property-order-is-predictable-in-javascript-objects-since-es2015/
+					// https://stackoverflow.com/questions/30076219/does-es6-introduce-a-well-defined-order-of-enumeration-for-object-properties
+					if (toInspect) {
+						// includes non-enumerable properties, but not inherited
+						var ownProperties = Object.getOwnPropertyNames(toInspect);
+						for (var i = 0; i < ownProperties.length; i++) {
+							var prop = ownProperties[i];
+							if (toInspect.propertyIsEnumerable(prop)) {
+								recordTypeOf(prop);
+							}
+						}
+					}
+				} else {
+					// includes inherited properties, but only if enumerable
+					for ( var property in toInspect ) {
+						if ( toInspect.hasOwnProperty( property ) ) {
+							recordTypeOf( property );
+						}
+					}
 				}
 			}
 		}

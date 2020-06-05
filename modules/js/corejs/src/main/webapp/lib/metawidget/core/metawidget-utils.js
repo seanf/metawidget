@@ -492,8 +492,10 @@ var metawidget = metawidget || {};
 			return path + name;
 		}
 
+		// If name contains any of these four chars: . ' " (SPACE)
+		// then surround with [' '] and replace ' with \'
 		if ( name.indexOf( '.' ) !== -1 || name.indexOf( '\'' ) !== -1 || name.indexOf( '"' ) !== -1 || name.indexOf( ' ' ) !== -1 ) {
-			return path + '[\'' + name.replace( '\'', '\\\'' ) + '\']';
+			return path + '[\'' + name.replace( /'/g, '\\\'' ) + '\']';
 		}
 
 		return path + '.' + name;

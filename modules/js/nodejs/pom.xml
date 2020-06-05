@@ -104,4 +104,36 @@
 		</plugins>
 	</build>
 
+	<dependencies>
+		<dependency>
+			<groupId>org.metawidget.modules.js</groupId>
+			<artifactId>metawidget-angularjs</artifactId>
+			<version>${project.version}</version><!--$NO-MVN-MAN-VER$ -->
+			<type>war</type>
+		</dependency>
+		<dependency>
+			<groupId>org.metawidget.modules.js</groupId>
+			<artifactId>metawidget-bootstrap</artifactId>
+			<version>${project.version}</version><!--$NO-MVN-MAN-VER$ -->
+			<type>war</type>
+		</dependency>
+		<dependency>
+			<groupId>org.metawidget.modules.js</groupId>
+			<artifactId>metawidget-jquerymobile</artifactId>
+			<version>${project.version}</version><!--$NO-MVN-MAN-VER$ -->
+			<type>war</type>
+		</dependency>
+		<dependency>
+			<groupId>org.metawidget.modules.js</groupId>
+			<artifactId>metawidget-jqueryui</artifactId>
+			<version>${project.version}</version><!--$NO-MVN-MAN-VER$ -->
+			<type>war</type>
+		</dependency>
+		<dependency>
+			<groupId>org.metawidget.modules.js</groupId>
+			<artifactId>metawidget-vue</artifactId>
+			<version>${project.version}</version><!--$NO-MVN-MAN-VER$ -->
+			<type>war</type>
+		</dependency>
+	</dependencies>
 </project>

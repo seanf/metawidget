@@ -18,8 +18,7 @@
 		<myfaces2.version>2.1.5</myfaces2.version>
 		<!-- We build against the latest RichFaces, but we test against 3.3.3.Final -->
 		<richfaces333.version>3.3.3.Final</richfaces333.version>
-		<!-- Appears to be the highest version that works with tomcat-maven-plugin 1.1 -->
-		<tomcat.version>6.0.29</tomcat.version>
+		<tomcat.version>7.0.68</tomcat.version>
 
 		<!-- Default compilation settings (will be overridden by the 'optimized' profile) -->
 
@@ -183,21 +182,21 @@
 				<pluginManagement>
 					<plugins>
 						<plugin>
-							<groupId>org.apache.tomcat.maven</groupId>
-							<artifactId>tomcat7-maven-plugin</artifactId>
+							<groupId>org.codehaus.cargo</groupId>
+							<artifactId>cargo-maven2-plugin</artifactId>
 							<executions>
 								<execution>
 									<id>start-tomcat</id>
 									<phase>pre-integration-test</phase>
 									<goals>
-										<goal>run-war</goal>
+										<goal>start</goal>
 									</goals>
 								</execution>
 								<execution>
 									<id>stop-tomcat</id>
 									<phase>post-integration-test</phase>
 									<goals>
-										<goal>shutdown</goal>
+										<goal>stop</goal>
 									</goals>
 								</execution>
 							</executions>
@@ -958,12 +957,23 @@
 					<!-- These executions are profile dependent -->
 				</plugin>
 				<plugin>
-					<groupId>org.apache.tomcat.maven</groupId>
-					<artifactId>tomcat7-maven-plugin</artifactId>
-					<version>2.2</version>
+					<groupId>org.codehaus.cargo</groupId>
+					<artifactId>cargo-maven2-plugin</artifactId>
+					<version>1.7.13</version>
 					<configuration>
-						<fork>true</fork>
-						<port>8180</port>
+						<container>
+							<containerId>tomcat7x</containerId>
+							<artifactInstaller>
+								<groupId>org.apache.tomcat</groupId>
+								<artifactId>tomcat</artifactId>
+								<version>${tomcat.version}</version>
+							</artifactInstaller>
+						</container>
+						<configuration>
+							<properties>
+								<cargo.servlet.port>8180</cargo.servlet.port>
+							</properties>
+						</configuration>
 					</configuration>
 					<!-- These executions are profile dependent -->
 				</plugin>
